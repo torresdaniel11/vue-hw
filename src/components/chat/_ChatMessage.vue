@@ -100,6 +100,10 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     font-size: 14px;
+
+    img {
+      max-width: calc(100vw - 100px);
+    }
   }
 }
 </style>

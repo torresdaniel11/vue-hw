@@ -51,7 +51,7 @@ export default {
   display: flex;
   flex-direction: row;
   height: 40px;
-  padding: 0 24px;
+  padding: 8px 24px 0 24px;
 
   input {
     width: 100%;

@@ -44,7 +44,8 @@ export default {
 }
 
 .card {
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   padding: 0 40px;
   border: 1px solid #e6e6e6;
   border-radius: 10px;

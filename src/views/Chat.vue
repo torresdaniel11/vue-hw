@@ -87,13 +87,13 @@ export default {
 }
 
 .chat {
-  width: 600px;
+  max-width: 600px;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
 }
 
 .messages {
-  max-height: 500px;
+  max-height: 650px;
   overflow-y: auto;
 }
 
