@@ -1,3 +1,3 @@
-export default interface UsersTyping { 
-  [username: string]: boolean; 
+export default interface UsersTyping {
+  [username: string]: boolean;
 }

@@ -1,19 +1,24 @@
 <template>
   <div class="input">
-    <input v-model="message" @keyup="didChange" @keydown.enter="send" placeholder="Message" />
+    <input
+      v-model="message"
+      @keyup="didChange"
+      @keydown.enter="send"
+      placeholder="Message"
+    />
     <button @click="send">Send</button>
   </div>
 </template>
 <script lang="js">
 import { mapActions } from "vuex";
 import axios from 'axios';
-import EVENTS from '../../shared/constants/events';
+import EVENTS from '../../shared/enums/events';
 
 const API_KEY = 'qNURMSF5tkvQUNWmfDBpRURYOfAGZlom';
 
 export default {
   name: "ChatInput",
-  props: ['socket'],
+  props: [],
   data () {
     return {
       message: '',
@@ -26,7 +31,7 @@ export default {
       const isTyping = this.message !== '';
 
       if (this.typing !== isTyping) {
-        this.socket.emit(EVENTS.TYPING, isTyping);
+        this.emit(EVENTS.TYPING, isTyping);
         this.typing = isTyping
       }
     },
@@ -35,18 +40,20 @@ export default {
         const criteria = this.message.replace('/gif ', '')
         const result = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${criteria}&limit=1&offset=0&rating=g&lang=en`)
 
-        this.socket.emit(EVENTS.IMAGE_MESSAGE, {url: result.data.data[0].images.original.url})
+        this.emit(EVENTS.IMAGE_MESSAGE, {url: result.data.data[0].images.original.url})
       } else {
-        this.socket.emit(EVENTS.TEXT_MESSAGE, this.message);
+        this.emit(EVENTS.TEXT_MESSAGE, this.message);
       }
       this.message = '';
-      this.socket.emit(EVENTS.TYPING, false);
+      this.emit(EVENTS.TYPING, false);
     },
+    emit(eventType, payload) {
+      this.$emit('emitEvent', {eventType, payload});
+    }
   },
 };
 </script>
 <style lang="scss">
-
 .input {
   display: flex;
   flex-direction: row;
@@ -62,7 +69,7 @@ export default {
     font-size: 14px;
     border-radius: 8px;
     border: 1px solid #e6e6e6;
-    border-right:  none;
+    border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
@@ -85,7 +92,7 @@ export default {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border: 1px solid #e6e6e6;
-    border-left:  none;
+    border-left: none;
     color: #a3a3a3;
   }
 }

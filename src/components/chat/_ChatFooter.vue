@@ -1,20 +1,20 @@
 <template>
   <div class="footer">
     <span>
-      {{whoIsTyping || ''}}
+      {{ whoIsTyping || "" }}
     </span>
   </div>
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'ChatFooter',
+  name: "ChatFooter",
   computed: {
-    ...mapGetters(['whoIsTyping'])
+    ...mapGetters(["whoIsTyping"])
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

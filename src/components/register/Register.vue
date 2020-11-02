@@ -1,38 +1,38 @@
 <template>
- <div class="container">
-   <div class="card">
-     <div class="title">
-       <h1>Join chat</h1>
-     </div>
-     <div class="content">
-       <label>Please enter your username</label>
-       <input type="text" v-model="username" required>
-     </div>
-     <div class="actions">
-       <button @click="join" :disabled="username === ''">Next</button>
-     </div>
-   </div>
- </div>
+  <div class="container">
+    <div class="card">
+      <div class="title">
+        <h1>Join chat</h1>
+      </div>
+      <div class="content">
+        <label>Please enter your username</label>
+        <input type="text" v-model="username" required />
+      </div>
+      <div class="actions">
+        <button @click="join" :disabled="username === ''">Next</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
-  name: 'Register',
-  data () {
+  name: "Register",
+  data() {
     return {
-      username: ''
-    }
+      username: ""
+    };
   },
   methods: {
-    ...mapActions(['setUsername']),
+    ...mapActions(["setUsername"]),
     join() {
       this.setUsername(this.username);
       this.$router.push(`/chat/${this.username}`);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -65,7 +65,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  label{
+  label {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 14px;
@@ -101,5 +101,4 @@ export default {
     border: none;
   }
 }
-
 </style>
